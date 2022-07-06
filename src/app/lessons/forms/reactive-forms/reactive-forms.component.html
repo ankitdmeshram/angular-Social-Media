@@ -1,0 +1,45 @@
+<!-- <form [formGroup]="loginForm" (ngSubmit)="userLogin(loginForm.value)">
+    <input type="text"
+        placeholder="name"
+        name="name"
+        formControlName="name"
+    >
+    <br>
+        <span *ngIf="name && name.invalid && name.touched" style="color: red">This field is not valid</span>
+    <br>
+    <input type="email"
+    placeholder="email"
+    name="email"
+    formControlName="email"
+>
+<br>
+    <span *ngIf="email && email.invalid && email.touched" style="color: red">This field is not valid</span>
+<br>
+    <input type="text"
+        placeholder="password"
+        name="password"
+        formControlName="password"
+    >
+    <br>
+        <span *ngIf="pass && pass.invalid && pass.touched" style="color: red">Password Invalid</span>
+    <br>
+    <button [disabled]="!loginForm.valid">Submit</button>
+</form> -->
+
+
+<form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+
+    <input type="text" name="name" placeholder="name" formControlName="name">
+    <br>
+        <span *ngIf="name && name.invalid && name.touched">
+            <p *ngIf="name.errors?.['pattern']">password must contains small letters only</p>
+            <p *ngIf="name.errors?.['minlength']">must be greater than 5 char </p>
+        </span>
+    <br>
+    <input type="text" name="password" placeholder="password" formControlName="password">
+    <br>
+        <span *ngIf="pass && pass.invalid && pass.touched">Invlid pass</span>
+    <br>
+    <button [disabled]="loginForm.invalid">Submit</button>
+
+</form>

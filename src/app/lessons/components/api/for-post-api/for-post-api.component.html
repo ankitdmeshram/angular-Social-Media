@@ -1,0 +1,19 @@
+<form #demoForm="ngForm" (ngSubmit)="submitForm(demoForm.value)">
+    <input type="text"
+    name="name"
+    #name = "ngModel"
+    ngModel
+    placeholder="name"
+    required
+    >
+    <br><br>
+    <input type="text"
+    name="job"
+    #job="ngModel"
+    ngModel
+    placeholder="job"
+    required
+    >
+    <br><br>
+    <button>Submit</button>
+</form>

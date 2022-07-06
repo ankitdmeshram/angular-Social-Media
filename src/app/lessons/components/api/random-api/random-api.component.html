@@ -1,0 +1,37 @@
+<p>random-api works!</p>
+
+<style>
+    table, tr, th, td 
+    {
+        border: 1px solid black;
+    }
+</style>
+<div *ngIf="!entries; else Data">
+    <p>Loading...</p>
+</div>
+<ng-template #Data>
+
+<table>
+    <tr>
+        <th>API</th>
+        <th>Description</th>
+        <th>Auth</th>
+        <th>HTTPS</th>
+        <th>Cors</th>
+        <th>Link</th>
+        <th>Category</th>
+    </tr> 
+
+    <tr *ngFor="let item of entries?.entries">
+        <th>{{item?.API}}</th>
+        <th>{{item?.Description}}</th>
+        <th>{{item?.Auth}}</th>
+        <th>{{item?.HTTPS}}</th>
+        <th>{{item?.Cors}}</th>
+        <th>{{item?.Link}}</th>
+        <th>{{item?.Category}}</th>
+    </tr>
+
+</table>
+
+</ng-template>

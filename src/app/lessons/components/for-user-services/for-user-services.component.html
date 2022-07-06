@@ -1,0 +1,9 @@
+<p>for-user-services works!</p>
+
+{{users | json}}
+
+<ul>
+    <li *ngFor="let user of users">
+        <p>{{user.name}} -- {{user.email}} -- {{user.age}}</p>
+    </li>
+</ul>

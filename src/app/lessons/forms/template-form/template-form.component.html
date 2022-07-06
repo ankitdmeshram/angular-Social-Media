@@ -1,0 +1,38 @@
+<form #tempForm="ngForm" (ngSubmit)="tempForms(tempForm.value)">
+    <input 
+      type="text"
+      placeholder="enter name"
+      name="name"
+      ngModel
+      pattern="[a-zA-Z]+$"
+      #name="ngModel"
+      required=""
+        >
+    <br>
+      <span style="color: red" *ngIf="name.invalid && name.touched">Enter Name</span>
+    <br>
+    <input type="email"
+    placeholder="email"
+    name="email"
+    ngModel
+    #email="ngModel"
+    email
+    required
+  >
+  <br>
+    <span style="color: red" *ngIf="email.invalid && email.touched">Enrer Email</span>
+  <br>
+    <input type="password"
+      placeholder="passowrd"
+      name="password"
+      ngModel
+      required
+      #password="ngModel"
+    >
+    <br>
+    <span style="color: red" *ngIf="password.invalid && password.touched">Enrer Email</span>
+    <br>
+    <button [disabled]="tempForm.invalid">SUbmit</button>
+  </form> 
+  
+  
