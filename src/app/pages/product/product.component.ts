@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CartService } from 'src/app/services/cart.service';
 import { DataService } from 'src/app/services/data.service';
-
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -43,6 +42,5 @@ export class ProductComponent implements OnInit {
     this.spinner.show();
     this.cart.addCart(id, title, image, price, quantity)
   }
-
 
 }
