@@ -1,0 +1,24 @@
+<div class="container" *ngIf="myCart != null">
+    <div class="row">
+        <div class="col-12">
+            <table>
+                <tr>
+                    <th>Sr.No.</th>
+                    <th>Image</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+                <tr *ngFor="let cartItem of myCart; let i = index">
+                    <td>{{i+1}}</td>
+                    <td><img src="{{cartItem.image}}" class="img-fluid" style="width: 100px; height: 100px" alt=""></td>
+                    <td>{{cartItem.title}}</td>
+                    <td>{{cartItem.price}}</td>
+                    <td>{{cartItem.quantity}}</td>
+                    <th>{{cartItem.price * cartItem.quantity}}</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

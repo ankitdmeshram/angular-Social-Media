@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from './services/auth.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -20,7 +21,6 @@ export class AppComponent {
     password: new FormControl('', [Validators.required, Validators.minLength(5)])
   })
 
-
   signin()
   {
     this.authService.signIn(this.loginForm.value.email, this.loginForm.value.password)
@@ -30,7 +30,4 @@ export class AppComponent {
   {
     this.authService.signUp(this.registerForm.value.email, this.registerForm.value.password)
   } 
-
-
-
 }

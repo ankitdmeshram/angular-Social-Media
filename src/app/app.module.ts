@@ -10,6 +10,14 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ProductsComponent } from './pages/products/products.component';
+
+import { HttpClientModule } from '@angular/common/http';
+import { ProductComponent } from './pages/product/product.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 
 @NgModule({
@@ -20,13 +28,19 @@ import { FooterComponent } from './layouts/footer/footer.component';
     SignupComponent,
     HeaderComponent,
     FooterComponent,
+    ProductsComponent,
+    ProductComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

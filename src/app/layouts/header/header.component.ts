@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -9,31 +10,44 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  email:any;
+  email: any;
   constructor(private auth: AuthService,
-    private router: Router) { 
-      // console.log(auth.getUser())
-      // auth.getUser().subscribe((user) => {
-      //   console.log("user is: ", user)
-      //   this.email = user?.email
-      // })
-      this.email = auth.getUser()
-    }
+    private router: Router,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    setInterval(() => {
+      this.LoggedInStatus();
+    }, 500)
   }
 
-  async handleSignOut()
-  {
+  LoggedInStatus() {
+    console.log("login status checking")
+    if (sessionStorage.length) {
+      if (sessionStorage.getItem('email')) {
+        this.email = sessionStorage.getItem('email')
+      }
+    } else {
+      this.email = null
+    }
+  }
+
+  handleSignOut() {
+    this.spinner.show()
     try {
-        await this.auth.signOut();
-        this.router.navigateByUrl("/signin");
-        alert("Logged out succss")
-        this.email = null;
+      this.auth.signOut();
+      this.router.navigateByUrl("/signin");
+      sessionStorage.clear()
+      this.email = null;
     } catch (error) {
       alert("problem in signout")
       console.log("problem in signout")
     }
+      this.spinner.hide();
   }
+
+
+
+
 
 }

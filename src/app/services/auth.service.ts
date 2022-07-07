@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { initializeApp } from "firebase/app"
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { environment } from 'src/environments/environment';
+import { NgxSpinnerService } from "ngx-spinner";
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ import { environment } from 'src/environments/environment';
 
 export class AuthService {
 
-  constructor() { }
+  constructor(private spinner: NgxSpinnerService, private router: Router) { }
 
   app = initializeApp(environment.firebaseConfig);
   auth = getAuth();
@@ -18,9 +20,12 @@ export class AuthService {
     return createUserWithEmailAndPassword(this.auth, email, password)
       .then((res) => {
         console.log("user registered successfully", res);
+        alert("user registered successfully");
       })
       .catch((error) => {
         console.log(error)
+        alert("user registered failed");
+
       });
   }
 
@@ -28,12 +33,16 @@ export class AuthService {
   {
     return signInWithEmailAndPassword(this.auth, email, password)
     .then((res) => {
-      console.log("user logged in successfully", res);
+      let tempemail:any = res.user.email
+      sessionStorage.setItem('email', tempemail)
+      sessionStorage.setItem('isLoggedIn', 'true')
+      // console.log(res)
+      this.router.navigateByUrl("/");
     })
     .catch((error) => {
-      console.log(error)
+      console.log("user logged in failed", error);
     });
-}
+  }
 
   getUser()
   {
